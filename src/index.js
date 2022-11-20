@@ -13,7 +13,7 @@ import reducers from './reducers';
 const container = document.querySelector('#root')
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
-    <Provider store={configureStore(reducers, {})}>
+    <Provider store={configureStore({reducer:reducers}, {})}>
         <BrowserRouter>
         <App>
             <Routes>
