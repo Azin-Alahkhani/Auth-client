@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
+import { compose } from "redux";
 
 class Signup extends Component {
   onSubmit = (formProps) => {
-    console.log(formProps);
+    this.props.signup(formProps)
   };
 
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)} >
+      <form onSubmit={handleSubmit(this.onSubmit)}>
         <fieldset>
           <label>Email</label>
           <Field
@@ -33,4 +36,8 @@ class Signup extends Component {
     );
   }
 }
-export default reduxForm({ form: "signup" })(Signup);
+// compose for multiple higher order components
+export default compose(
+  connect(null, actions),
+  reduxForm({ form: "signup" })
+)(Signup);
